@@ -13,16 +13,13 @@ from .services import get_products_with_average_ratings, get_total_product_revie
 
 class ProductsListAPI(APIView):
     class ProductsOutputSerializer(serializers.Serializer):
+        id = serializers.IntegerField()
         name = serializers.CharField()
         price = serializers.DecimalField(max_digits=9, decimal_places=2)
         overall_rating = serializers.DecimalField(max_digits=3, decimal_places=2)
 
     def get(self, request):
         products = get_products_with_average_ratings()
-        # products = cache.get("products")
-        # if not products:
-        #     products = get_products_with_average_ratings()
-        #     cache.set("products", products, 300)
 
         serializer = self.ProductsOutputSerializer(products, many=True)
 

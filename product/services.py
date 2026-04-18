@@ -30,6 +30,7 @@ def get_products_with_average_ratings() -> list:
             overall_rating = 0
 
         result.append({
+            "id": product.id,
             "name": product.name,
             "price": product.price,
             "overall_rating": overall_rating,
